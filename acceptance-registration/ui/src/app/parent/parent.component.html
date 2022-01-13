@@ -1,0 +1,115 @@
+<div class="header row">
+    <h1 class="col section-header">Acceptance and Registration Information</h1>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-12">Legal FirstName:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.legalFirstName }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Legal Surname:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.legalSurname }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Date of Birth:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.dob }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">School:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.schoolName }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Interview Date:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.interviewDate }}</div>
+  </div>
+  <div>
+    <h5 class="row">Student Declaration:</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Student Signature:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.studentSignature }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Student Signature Date:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.studentSignatureDate }}</div>
+  </div>
+  <div>
+    <h5 class="row">Completed Form Details:</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Ethnicity</div>
+    <div class="col-md-9 col-sm-12">{{ student?.ethnicityDescription }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">LLDD Health Problem</div>
+    <div class="col-md-9 col-sm-12">{{ student?.llddHealthProblemDescription }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Are you a looked after child or
+        adopted?</div>
+    <div class="col-md-9 col-sm-12">{{ student?.lookedAfterChildOrAdopted ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Have you or your family had any
+        involment with Children's Services during your secondry school years?:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.childrenServicesInvolvedAtSchool ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Are there any other social issues which
+        may require further support while at college?:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.otherSocialSupportIssues ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Have you had any school meals at any
+        point since Year 7?:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.freeMealsWhileAtSchool ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Have either of your parents/guardians
+        been to university and gained a Higher Diploma or Degree?:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.parentsUniversityEducated ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Are you currently on an EHCP plan?</div>
+    <div class="col-md-9 col-sm-12">{{ student?.ehcp ? 'Yes' : 'No' }}</div>
+  </div>
+  <div>
+    <h5 class="row">Contact to be by:</h5>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Post:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.contactByPost ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Telephone:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.contactByPhone ? 'Yes' : 'No' }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-sm-12">Email:</div>
+    <div class="col-md-9 col-sm-12">{{ student?.contactByEmail ? 'Yes' : 'No' }}</div>
+  </div>
+
+  <div class="header row">
+    <h5 class="col section-header">Parent Acceptance</h5>
+  </div>
+  <form [formGroup]="form" novalidate class="form form-horizontal">
+    <div class="row col-md-4">
+      <label for="parentSignature" class="col-sm-4 control-label">Signature of Parent:</label>
+      <div class="col-md-8 col-sm-12">
+        <input type="text" class="form-control" id="parentSignature"
+          formControlName="parentSignature"/>
+      </div>
+    </div>
+ 
+      <div class="row col-md-4">
+        <label for="parentignatureDate" class="col-sm-4 control-label">Parent Signature Date:</label>
+        <div class="col-md-8 col-sm-12">
+          <input type="text" class="form-control" id="parentSignatureDate" placeholder="DD/MM/YYYY"
+            formControlName="parentSignatureDate" uib-datepicker-popup="dd/MM/yyyy"/>
+        </div>
+      </div>
+      <div class="col-md">
+        <button class="btn btn-primary" (click)="saveParentAcceptance(student)">
+          Submit
+        </button>
+      </div>
+      </form>

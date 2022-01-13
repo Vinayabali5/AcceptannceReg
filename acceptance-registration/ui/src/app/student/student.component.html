@@ -1,0 +1,261 @@
+<div class="row" *ngIf="student?.linkId !== null">
+  <div class="col-sm-12">
+
+    <div class="header row">
+      <h1 class="col section-header">Acceptance and Registration Information</h1>
+    </div>
+    <div class="header row">
+      <h2 class="col section-header">Personal Details</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-6">Legal FirstName:</div>
+      <div class="col-6">{{ student.legalFirstName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Legal Surname:</div>
+      <div class="col-6">{{ student.legalSurname }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Date of Birth:</div>
+      <div class="col-6">{{ student.dob }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">School:</div>
+      <div class="col-6">{{ student.schoolName }}</div>
+    </div>
+    <div class="row">
+      <div class="col-6">Interview Date:</div>
+      <div class="col-6">{{ student.interviewDate }}</div>
+    </div>
+    <form [formGroup]="form" novalidate class="form form-horizontal">
+
+      <div class="header row">
+        <h2 class="col section-header">Offer Details</h2>
+      </div>
+  
+      <div class="row form-group">
+        <label for="resident" class="col-sm-8 control-label">I/We accept the offer of a place for the above named student:</label>
+        <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="offerAccepted" id="offerAccepted-yes" type="radio" [value]="true" formControlName="offerAccepted" />
+                <label class="form-check-label" for="offerAccepted-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="offerAccepted" id="offerAccepted-no" type="radio" [value]="false" formControlName="offerAccepted" />
+                <label class="form-check-label" for="offerAccepted-no"> No</label>
+            </div>
+        </div>
+      </div>
+
+      <div *ngIf="form.controls['offerAccepted'].value === true">
+        <div class="header row">
+          <h2 class="col section-header">Registration Form</h2>
+        </div>
+
+        <div class="row form-group">
+          <label for="ethnicityId" class="col-sm-8 control-label">Ethnicity</label>
+          <div class="col-sm-4">
+            <ethnicity-selection
+              id="ethnicityId"
+              formControlName="ethnicityId"
+            ></ethnicity-selection>
+          </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="llddHealthProblemId" class="col-sm-8 control-label">Do you consider yourself to have any Learning Difficulties or Disabilities?</label>
+          <div class="col-sm-4">
+            <lldd-health-problem-selection
+              id="llddHealthProblemId"
+              formControlName="llddHealthProblemId"
+            ></lldd-health-problem-selection>
+          </div>
+        </div>
+
+        <div class="row form-group" *ngIf="showLLDDSelector()">
+          <label for="llddHealthProblemId" class="col-sm-4 control-label">Learning Difficulties or Disabilities</label>
+          <div class="col-sm-8">
+            <lldd-category-selector
+              id="llddCategory"
+              formControlName="llddCategory"
+            ></lldd-category-selector>
+          </div>
+        </div>
+
+
+
+
+        <div class="row form-group">
+          <label for="lookedAfterChildOrAdopted" class="col-sm-8 control-label" >Are you a looked after child or adopted?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="lookedAfterChildOrAdopted" id="lookedAfterChildOrAdopted-yes" type="radio" [value]="true" formControlName="lookedAfterChildOrAdopted" />
+                <label class="form-check-label" for="lookedAfterChildOrAdopted-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="lookedAfterChildOrAdopted" id="lookedAfterChildOrAdopted-no" type="radio" [value]="false" formControlName="lookedAfterChildOrAdopted" />
+                <label class="form-check-label" for="lookedAfterChildOrAdopted-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="childrenServicesInvolvedAtSchool" class="col-sm-8 control-label">Have you or your family had any involment with Children's Services during your secondry school years?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="childrenServicesInvolvedAtSchool" id="childrenServicesInvolvedAtSchool-yes" type="radio" [value]="true" formControlName="childrenServicesInvolvedAtSchool" />
+                <label class="form-check-label" for="childrenServicesInvolvedAtSchool-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="childrenServicesInvolvedAtSchool" id="childrenServicesInvolvedAtSchool-no" type="radio" [value]="false" formControlName="childrenServicesInvolvedAtSchool" />
+                <label class="form-check-label" for="childrenServicesInvolvedAtSchool-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="otherSocialSupportIssues" class="col-sm-8 control-label">Are there any other social issues which may require further support while at college?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="otherSocialSupportIssues" id="otherSocialSupportIssues-yes" type="radio" [value]="true" formControlName="otherSocialSupportIssues" />
+                <label class="form-check-label" for="otherSocialSupportIssues-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="otherSocialSupportIssues" id="otherSocialSupportIssues-no" type="radio" [value]="false" formControlName="otherSocialSupportIssues" />
+                <label class="form-check-label" for="otherSocialSupportIssues-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="freeMealsWhileAtSchool" class="col-sm-8 control-label">Have you had any school meals at any point since Year 7?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="freeMealsWhileAtSchool" id="freeMealsWhileAtSchool-yes" type="radio" [value]="true" formControlName="freeMealsWhileAtSchool" />
+                <label class="form-check-label" for="freeMealsWhileAtSchool-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="freeMealsWhileAtSchool" id="freeMealsWhileAtSchool-no" type="radio" [value]="false" formControlName="freeMealsWhileAtSchool" />
+                <label class="form-check-label" for="freeMealsWhileAtSchool-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="parentsUniversityEducated" class="col-sm-8 control-label">Have either of your parents/guardians been to university and gained a Higher Diploma or Degree?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="parentsUniversityEducated" id="parentsUniversityEducated-yes" type="radio" [value]="true" formControlName="parentsUniversityEducated" />
+                <label class="form-check-label" for="parentsUniversityEducated-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="parentsUniversityEducated" id="parentsUniversityEducated-no" type="radio" [value]="false" formControlName="parentsUniversityEducated" />
+                <label class="form-check-label" for="parentsUniversityEducated-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label for="ehcp" class="col-sm-8 control-label">Are you currently on an EHCP plan?</label>
+          <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="ehcp" id="ehcp-yes" type="radio" [value]="true" formControlName="ehcp" />
+                <label class="form-check-label" for="ehcp-yes"> Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" name="ehcp" id="ehcp-no" type="radio" [value]="false" formControlName="ehcp" />
+                <label class="form-check-label" for="ehcp-no"> No</label>
+            </div>
+        </div>
+        </div>
+
+        <div class="row form-group">
+          <label class="col-sm-7 control-label">Contact to be by:</label>
+          <div class="col-sm-5">
+            <div class="row form-group">
+              <label for="contactByPost" class="col-4 control-label">Post:</label>
+              <div class="col-4">
+                <input
+                  type="checkbox"
+                  class="form-control"
+                  id="contactByPost"
+                  formControlName="contactByPost"
+                />
+              </div>
+            </div>
+  
+            <div class="row form-group">
+              <label for="contactByPhone" class="col-4 control-label">Telephone:</label>
+              <div class="col-4">
+                <input
+                  type="checkbox"
+                  class="form-control"
+                  id="contactByPhone"
+                  formControlName="contactByPhone"
+                />
+              </div>
+            </div>
+  
+            <div class="row form-group">
+              <label for="contactByEmail" class="col-4 control-label">Email:</label>
+              <div class="col-4">
+                <input
+                  type="checkbox"
+                  class="form-control"
+                  id="contactByEmail"
+                  formControlName="contactByEmail"
+                />
+              </div>
+            </div>
+    
+          </div>
+        </div>
+
+        <div class="header row">
+          <h2 class="col section-header">Signature</h2>
+        </div>
+
+        <div class="row">
+          <label for="studentSignature" class="col-sm-4 control-label">Signature of Student:</label>
+          <div class="col-md-8 col-sm-12">
+            <input
+              type="text"
+              class="form-control"
+              id="studentSignature"
+              formControlName="studentSignature"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="studentSignatureDate" class="col-sm-4 control-label">Student Signature Date:</label>
+          <div class="col-md-8 col-sm-12">
+            <input
+              type="text"
+              class="form-control"
+              id="studentSignatureDate"
+              placeholder="DD/MM/YYYY"
+              formControlName="studentSignatureDate"
+              uib-datepicker-popup="dd/MM/yyyy"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md">
+          <button class="btn btn-primary" (click)="saveApplication(student)" [disabled]="!isValid()">Submit</button>
+          <button class="btn btn-warning" (click)="showDebug()">DEBUG</button>
+        </div>
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+<div class="col-sm-" *ngIf="student?.linkId === null">
+  <h5 class="col section-error-header">Student not found</h5>
+</div>
